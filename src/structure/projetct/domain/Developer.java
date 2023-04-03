@@ -2,6 +2,7 @@ package structure.projetct.domain;
 
 import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 public class Developer {
@@ -12,15 +13,27 @@ public class Developer {
 
 
     public void singUpBootcamp(Bootcamp bootcamp){
-
+        bootcamp.getSubscribedDevs().add(this);
+        this.subscribedContent.addAll(bootcamp.getContents());
     }
 
     public void toProgress(){
+        Optional<Content> content = this.subscribedContent.stream().findFirst();
 
+        if(content.isPresent()){
+            this.finishedContents.add(content.get());
+            this.subscribedContent.remove(content.get());
+        }
+        else{
+            System.err.println("Você não está matriculado em nenhum conteúdo");
+        }
     }
 
-    public void calculateXp(){
-
+    public double calculateXp(){
+        return this.finishedContents
+            .stream()
+            .mapToDouble(content -> content.calculateXp())
+            .sum();
     }
 
     
