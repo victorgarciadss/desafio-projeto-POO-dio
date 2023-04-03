@@ -1,30 +1,18 @@
 package structure.projetct.domain;
 
-public class Course {
+public class Course extends Content {
     
-    private String title;
-    private String description;
     private int workload;
 
     public Course() {
-        
+
+    }    
+
+    @Override
+    public double calculateXp() {
+        return STANDARD_XP * workload;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public int getWorkload() {
         return workload;
@@ -36,8 +24,8 @@ public class Course {
 
     @Override
     public String toString() {
-        return "Curso [título = " + title + ", descrição = " + description + ", carga horária = " + workload
-         + "]";
+        return "Curso [título = " + getTitle() + ", descrição = " + getDescription() + ", carga horária = " +
+         workload + "]";
     }
 
     
