@@ -12,7 +12,7 @@ public class Developer {
     private Set<Content> finishedContents = new LinkedHashSet<>();
 
 
-    public void singUpBootcamp(Bootcamp bootcamp){
+    public void signUpBootcamp(Bootcamp bootcamp){
         bootcamp.getSubscribedDevs().add(this);
         this.subscribedContent.addAll(bootcamp.getContents());
     }
@@ -62,11 +62,6 @@ public class Developer {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(name, subscribedContent, finishedContents);
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (this == obj){
             return true;
@@ -81,6 +76,11 @@ public class Developer {
             Objects.equals(name, developer.name) &&
             Objects.equals(subscribedContent, developer.subscribedContent) &&
             Objects.equals(finishedContents, developer.finishedContents);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, subscribedContent, finishedContents);
     }
 
     

@@ -4,8 +4,14 @@ public class Course extends Content {
     
     private int workload;
 
-    public Course() {
+    public Course(){
+        
+    }
 
+    public Course(String title, String description, int workload) {
+        setTitle(title);
+        setDescription(description);
+        this.workload = workload;
     }    
 
     @Override
